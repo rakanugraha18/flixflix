@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-export default function CardSeries(props) {
-  const { img, title, first_date, rating, id } = props;
+export default function CardPopular(props) {
+  const { img, title, date, rating, id } = props;
   return (
     <>
-      <Link to={`/detailSeries/${id}`}>
+      <Link to={`/detailPopular/${id}`}>
         <div className="bg-white p-4 rounded-lg shadow-md">
           <div className="h-16 items-center text-center">
             <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-xl xl:text-xl font-semibold mb-2">
@@ -14,7 +14,7 @@ export default function CardSeries(props) {
             className="w-full h-full object-cover mb-2 rounded-lg"
             src={img}
           />
-          <div className="Movie-date">First Air Date: {first_date}</div>
+          <div className="Movie-date">Release Date: {date}</div>
           <div className="Movie-rate">Rating : {rating}</div>
         </div>
       </Link>

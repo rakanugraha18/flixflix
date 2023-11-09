@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import MoviePage from "../pages/MoviePage";
+import MovieTopRatePage from "../pages/MovieTopRatePage";
 import PopularPage from "../pages/PopularPage";
 import DetailMoviePage from "../pages/DetailMoviePage";
 import SeriesPage from "../pages/SeriesPage";
 import DetailSeriesPage from "../pages/DetailSeriesPage";
+import DetailMovieTopRatePage from "../pages/DetailMovieTopRatePage";
+import DetailPopularPage from "../pages/DetailPopularPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,10 +21,18 @@ export const router = createBrowserRouter([
     path: "/detailSeries/:id",
     element: <DetailSeriesPage />,
   },
+  {
+    path: "/detailTopRate/:id",
+    element: <DetailMovieTopRatePage />,
+  },
+  {
+    path: "/detailPopular/:id",
+    element: <DetailPopularPage />,
+  },
 
   {
-    path: "/Movies",
-    element: <MoviePage />,
+    path: "/MovieTopRatePage",
+    element: <MovieTopRatePage />,
   },
   {
     path: "/Series",

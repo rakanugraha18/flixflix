@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { HiHome, HiStar, HiPlayCircle, HiTv } from "react-icons/hi2";
-import { HiDotsVertical } from "react-icons/hi";
 import HeaderItem from "./HeaderItem";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -21,9 +20,9 @@ function Header() {
       path: "/Popular",
     },
     {
-      name: "MOVIES",
+      name: "MOVIES TOP RATE",
       icon: HiPlayCircle,
-      path: "/Movies",
+      path: "/MovieTopRatePage",
     },
     {
       name: "SERIES",
@@ -42,7 +41,7 @@ function Header() {
             </a>
           </div>
 
-          <div className="flex gap-8 items-center pr-10">
+          <div className="flex gap-8 items-center pr-4 md:pr-10">
             <div className="hidden md:flex gap-8 mt-4">
               {menu.map((item, index) => (
                 <Link to={item.path}>
@@ -59,7 +58,7 @@ function Header() {
             <div className="md:hidden mt-2" onClick={() => setToggle(!toggle)}>
               <HeaderItem name={" "} Icon={FaIcons.FaBars} />
               {toggle ? (
-                <div className="absolute right-10 mt-4 border-[1px] bg-white border-gray-700 p-3 py-2">
+                <div className="absolute right-7 mt-4 border-[1px] bg-white border-gray-700 p-3 py-2">
                   {menu.map(
                     (item, index) =>
                       index > 0 && (

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Header from "../components/Header";
 import axios from "axios";
+import Footer from "../components/Footer";
 export default function HomePage() {
   const [dataMovie, setDataMovie] = useState([]);
 
@@ -46,6 +47,7 @@ export default function HomePage() {
           </>
         )}
       </div>
+      <Footer />
     </>
   );
 }

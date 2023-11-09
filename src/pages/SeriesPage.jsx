@@ -32,7 +32,7 @@ export default function SeriesPage() {
                     id={series.id}
                     title={series.original_name}
                     img={`${imgUrl}${series.poster_path}`}
-                    date={series.release_date}
+                    first_date={series.first_air_date}
                     rating={series.vote_average}
                   />
                 </div>
