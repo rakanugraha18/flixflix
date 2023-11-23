@@ -21,7 +21,8 @@ export default function DetailMoviePage() {
 
   return (
     <>
-      <div className="mx-auto">
+      <div className="py-10"></div>
+      <section className="mx-auto h-[1350px]">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-20">
           <div className="m-auto">
             <img src={`${imgUrl}${dataDetail.poster_path}`} />
@@ -32,7 +33,7 @@ export default function DetailMoviePage() {
             <p className="text-gray-500 mb-2">{dataDetail.vote_average}</p>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

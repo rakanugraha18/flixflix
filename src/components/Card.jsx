@@ -4,9 +4,9 @@ export default function Card(props) {
   return (
     <>
       <Link to={`${redirect}/${id}`}>
-        <div className="bg-white p-4 rounded-lg shadow-md">
+        <div className="bg-white p-4 rounded-lg shadow-md md:hover:drop-shadow-md md:hover:ease-out md:duration-[250ms] hover:shadow-orange-600">
           <div className="h-16 items-center text-center">
-            <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-xl xl:text-xl font-semibold mb-2">
+            <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-2xl xl:text-2xl font-semibold mb-2 text-orange-600">
               {title}
             </h2>
           </div>
@@ -14,8 +14,12 @@ export default function Card(props) {
             className="w-full h-full object-cover mb-2 rounded-lg"
             src={img}
           />
-          <div className="Movie-date">Release Date: {date}</div>
-          <div className="Movie-rate">Rating : {rating}</div>
+          <div className="Movie-date items-center text-center">
+            Release Date: {date}
+          </div>
+          <div className="Movie-rate items-center text-center">
+            Rating : {rating}
+          </div>
         </div>
       </Link>
     </>

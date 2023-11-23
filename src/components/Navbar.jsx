@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { HiHome, HiPlayCircle, HiTv } from "react-icons/hi2";
-import HeaderItem from "./HeaderItem";
+import NavbarItem from "./NavbarItem";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -38,20 +38,20 @@ const Navbar = () => {
   ];
   return (
     <>
-      <nav className="fixed bg-slate-100 w-full">
+      <nav className="fixed bg-orange-600 w-full">
         {/* Header */}
         <div className="flex items-center justify-between py-2">
           <div className="w-[80px] md:w-[115px] object-cover">
             <a href="/">
-              <h1 className="font-bold text-3xl px-7">flixflix</h1>
+              <h1 className="font-bold text-3xl px-7 text-white">flixflix</h1>
             </a>
           </div>
 
-          <div className="flex gap-8 items-center pr-4 md:pr-10">
+          <div className="flex gap-8 items-center pr-4 md:pr-10 text-white">
             <div className="hidden md:flex gap-8 mt-4">
               {menu.map((item, index) => (
                 <Link key={index} to={item.path}>
-                  <HeaderItem name={item.name} Icon={item.icon} />
+                  <NavbarItem name={item.name} Icon={item.icon} />
                 </Link>
               ))}
             </div>
@@ -59,19 +59,21 @@ const Navbar = () => {
               {menu.map(
                 (item, index) =>
                   index < 1 && (
-                    <HeaderItem key={index} name={" "} Icon={item.icon} />
+                    <Link key={index} to={item.path}>
+                      <NavbarItem key={index} name={" "} Icon={item.icon} />
+                    </Link>
                   )
               )}
             </div>
             <div className="md:hidden mt-2" onClick={() => setToggle(!toggle)}>
-              <HeaderItem name={" "} Icon={FaIcons.FaBars} />
+              <NavbarItem name={" "} Icon={FaIcons.FaBars} />
               {toggle ? (
-                <div className="absolute right-7 mt-4 border-[1px] bg-white border-gray-700 p-3 py-2">
+                <div className="absolute right-7 mt-4 border-[1px] bg-orange-600 border-gray-700 p-3 py-2">
                   {menu.map(
                     (item, index) =>
                       index > 0 && (
                         <Link key={index} to={item.path}>
-                          <HeaderItem name={item.name} Icon={item.icon} />
+                          <NavbarItem name={item.name} Icon={item.icon} />
                         </Link>
                       )
                   )}
