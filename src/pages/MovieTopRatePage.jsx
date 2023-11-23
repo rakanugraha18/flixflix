@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import CardTopRate from "../components/CardTopRate";
-import Header from "../components/Header";
+import Card from "../components/Card";
 import axios from "axios";
 export default function MovieTopRatePage() {
   const [dataMovieTopRate, setDataMovieTopRate] = useState([]);
@@ -20,16 +19,14 @@ export default function MovieTopRatePage() {
 
   return (
     <>
-      <Header />
-      {/* <Navbar /> */}
-      <div className="py-10"></div>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
         {dataMovieTopRate.length > 0 ? (
           <>
             {dataMovieTopRate.map((movieTr, i) => {
               return (
                 <div key={i}>
-                  <CardTopRate
+                  <Card
+                    redirect="/detail"
                     id={movieTr.id}
                     title={movieTr.original_title}
                     img={`${imgUrl}${movieTr.poster_path}`}

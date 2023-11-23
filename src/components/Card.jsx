@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 export default function Card(props) {
-  const { img, title, date, rating, id } = props;
+  const { img, title, date, rating, id, redirect } = props;
   return (
     <>
-      <Link to={`/detail/${id}`}>
+      <Link to={`${redirect}/${id}`}>
         <div className="bg-white p-4 rounded-lg shadow-md">
           <div className="h-16 items-center text-center">
             <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-xl xl:text-xl font-semibold mb-2">

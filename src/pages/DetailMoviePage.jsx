@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import Header from "../components/Header";
 
 export default function DetailMoviePage() {
   const imgUrl = "https://image.tmdb.org/t/p/w500";
@@ -22,8 +21,6 @@ export default function DetailMoviePage() {
 
   return (
     <>
-      <Header />
-      <div className="py-10"></div>
       <div className="mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-20">
           <div className="m-auto">
