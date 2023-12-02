@@ -4,9 +4,9 @@ export default function CardSeries(props) {
   return (
     <>
       <Link to={`/detailSeries/${id}`}>
-        <div className="bg-white p-4 rounded-lg shadow-md md:hover:drop-shadow-md md:hover:ease-out md:duration-[250ms] hover:shadow-orange-600">
+        <div className="bg-white p-4 rounded-lg shadow-md  md:hover:ease-out md:duration-[250ms] hover:shadow-orange-500">
           <div className="h-16 items-center text-center">
-            <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-2xl xl:text-2xl font-semibold mb-2 text-orange-600">
+            <h2 className="text-3xl sm:text-3xl md:text-xl lg:text-2xl xl:text-2xl font-semibold mb-2 text-orange-500">
               {title}
             </h2>
           </div>

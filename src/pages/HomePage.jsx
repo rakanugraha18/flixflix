@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Slider from "../components/Slider";
 export default function HomePage() {
   const [dataMovie, setDataMovie] = useState([]);
 
@@ -24,6 +23,7 @@ export default function HomePage() {
   return (
     <>
       <div className="py-10"></div>
+      <Slider />
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
         {dataMovie.length > 0 ? (
           <>
