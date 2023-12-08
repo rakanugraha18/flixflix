@@ -22,7 +22,7 @@ export default function DetailMoviePage() {
   return (
     <>
       <div className="py-10"></div>
-      <section className="mx-auto h-[1350px]">
+      <section className="mx-auto h-full">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 px-20">
           <div className="m-auto">
             <img src={`${imgUrl}${dataDetail.poster_path}`} />
