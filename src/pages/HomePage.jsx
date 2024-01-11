@@ -2,23 +2,38 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
 import Slider from "../components/Slider";
-export default function HomePage() {
+import { useNavigate } from "react-router-dom";
+
+const HomePage = () => {
   const [dataMovie, setDataMovie] = useState([]);
-
   const imgUrl = `${import.meta.env.VITE_APP_IMGURL}`;
-  const getApiMovie = async () => {
-    const response = await axios(
-      `${import.meta.env.VITE_APP_BASEURL}/discover/movie?api_key=${
-        import.meta.env.VITE_APP_API_KEY
-      }`
-    );
-
-    setDataMovie(response.data.results);
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getApiMovie();
+    // Cek apakah token tersedia
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika tidak ada token, arahkan ke halaman login
+      navigate("/Login");
+    } else {
+      // Jika ada token, ambil data movie
+      getApiMovie();
+    }
   }, []);
+
+  const getApiMovie = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_BASEURL}/discover/movie?api_key=${
+          import.meta.env.VITE_APP_API_KEY
+        }`
+      );
+
+      setDataMovie(response.data.results);
+    } catch (error) {
+      console.error("Error fetching movie data:", error);
+    }
+  };
 
   return (
     <>
@@ -50,4 +65,6 @@ export default function HomePage() {
       </div>
     </>
   );
-}
+};
+
+export default HomePage;

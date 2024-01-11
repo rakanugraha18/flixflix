@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 export default function MovieTopRatePage() {
   const [dataMovieTopRate, setDataMovieTopRate] = useState([]);
 
@@ -13,8 +15,17 @@ export default function MovieTopRatePage() {
     setDataMovieTopRate(response.data.results);
   };
 
+  const navigate = useNavigate();
   useEffect(() => {
-    getApiMovieTopRate();
+    // Cek apakah token tersedia
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika tidak ada token, arahkan ke halaman login
+      navigate("/Login");
+    } else {
+      // Jika ada token, ambil data movie
+      getApiMovieTopRate();
+    }
   }, []);
 
   return (

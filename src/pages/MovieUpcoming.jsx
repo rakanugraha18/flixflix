@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
 export default function MovieUpcoming() {
   const [dataUpcoming, setDataUpcoming] = useState([]);
 
@@ -13,8 +14,17 @@ export default function MovieUpcoming() {
     setDataUpcoming(response.data.results);
   };
 
+  const navigate = useNavigate();
   useEffect(() => {
-    getApiUpcoming();
+    // Cek apakah token tersedia
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika tidak ada token, arahkan ke halaman login
+      navigate("/Login");
+    } else {
+      // Jika ada token, ambil data movie
+      getApiUpcoming();
+    }
   }, []);
 
   return (

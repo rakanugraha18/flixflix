@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CardSeries from "../components/CardSeries";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 export default function SeriesPage() {
   const [dataSeries, setDataSeries] = useState([]);
 
@@ -13,10 +14,18 @@ export default function SeriesPage() {
     setDataSeries(response.data.results);
   };
 
+  const navigate = useNavigate();
   useEffect(() => {
-    getApiSeries();
+    // Cek apakah token tersedia
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika tidak ada token, arahkan ke halaman login
+      navigate("/Login");
+    } else {
+      // Jika ada token, ambil data movie
+      getApiSeries();
+    }
   }, []);
-
   return (
     <>
       <div className="py-10"></div>

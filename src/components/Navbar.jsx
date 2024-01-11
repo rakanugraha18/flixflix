@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { HiHome, HiPlayCircle, HiStar, HiTv } from "react-icons/hi2";
 import NavbarItem from "./NavbarItem";
 import * as FaIcons from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import image from "../assets/FlixflixPNG2.png";
+import { logout } from "../Services/authService";
 
 // import profile from "./../assets/bony.png";
 
@@ -43,16 +45,22 @@ const Navbar = () => {
 
   const account = [
     {
-      name: "LOGIN",
+      name: "Profile",
       icon: FaIcons.FaUser,
-      path: "/Login",
+      path: "/Profile",
     },
-    {
-      name: "REGISTER",
-      icon: FaIcons.FaUser,
-      path: "/Register",
-    },
+    //   {
+    //     name: "LOGOUT",
+    //     icon: FaIcons.FaSignOutAlt,
+    //     onClick: () => handleLogout(),
+    //   },
   ];
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/Login"); // Redirect ke halaman login setelah logout
+  };
 
   return (
     <>
@@ -62,7 +70,11 @@ const Navbar = () => {
           <div className="flex gap-8 items-center pr-4 md:pr-10 text-white">
             <div className="w-[115px]">
               <a href="/">
-                <h1 className="font-bold text-3xl px-7 text-white">flixflix</h1>
+                <img
+                  src={image}
+                  className="pl-5 p-2 w-[110px] object-cover"
+                ></img>
+                {/* <h1 className="font-bold text-3xl px-7 text-white">flixflix</h1> */}
               </a>
             </div>
             <div className="hidden md:flex gap-8 mt-4">
@@ -118,12 +130,12 @@ const Navbar = () => {
             </div>
           </div>
           <div
-            className=" mt-2 relative"
+            className=" mt-2 relative pr-4"
             onClick={() => setToggleAccount(!toggleAccount)}
           >
             <NavbarItem name={" "} Icon={FaIcons.FaUser} />
             {toggleAccount ? (
-              <div className="absolute mt-4 right-0 bg-orange-500 p-3 py-2">
+              <div className="absolute mt-4 right-0 bg-orange-500 p-3 py-2 md:pr-5">
                 {account.map(
                   (item, index) =>
                     index > -4 && (
@@ -140,6 +152,12 @@ const Navbar = () => {
                       </Link>
                     )
                 )}
+                <button onClick={handleLogout}>
+                  <span className="text-white flex items-center gap-3 text-[14px]  font-semibold cursor-pointer mb-3 relative">
+                    <FaIcons.FaSignOutAlt className="text-white" />
+                    Logout
+                  </span>
+                </button>
               </div>
             ) : null}
           </div>

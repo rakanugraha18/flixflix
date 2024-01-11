@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 export default function DetailSeriesPage() {
@@ -16,8 +16,17 @@ export default function DetailSeriesPage() {
     setDataSeriesDetail(response.data);
   };
 
+  const navigate = useNavigate();
   useEffect(() => {
-    getDetailApiSeries();
+    // Cek apakah token tersedia
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Jika tidak ada token, arahkan ke halaman login
+      navigate("/Login");
+    } else {
+      // Jika ada token, ambil data movie
+      getDetailApiSeries();
+    }
   }, []);
 
   return (

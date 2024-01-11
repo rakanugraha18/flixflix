@@ -1,14 +1,19 @@
 import React from "react";
 import { FaFacebook, FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
+import image from "../assets/FlixflixPNG2.png";
 
 function Footer() {
   return (
     <>
-      <footer className="w-full h-[300] bg-[#121212] py-24 mt-5">
-        <div>
-          <h1 className="font-bold text-[70px] px-7 text-white text-center">
+      <footer className="w-full h-[300] bg-[#121212] py-10 mt-5">
+        <div className="flex items-center justify-center ">
+          {/* <h1 className="font-bold text-[70px] px-7 text-white text-center">
             flixflix
-          </h1>
+          </h1> */}
+          <img
+            src={image}
+            className="p-2 w-[400px] object-cover items-center"
+          ></img>
         </div>
         <div className="flex items-center justify-center gap-4 pb-10 text-white text-[30px]">
           <FaInstagram />
