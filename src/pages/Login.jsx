@@ -2,12 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../Services/authService";
 
+const MAX_LOGIN_ATTEMPTS = 8; // Set the maximum number of login attempts
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: "",
+    identifier: "",
     password: "",
   });
+
+  const [loading, setLoading] = useState(false); // State for loading
+  const [error, setError] = useState(null);
+  const [loginAttempts, setLoginAttempts] = useState(0); // Track login attempts
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,20 +28,39 @@ export default function LoginPage() {
 
     try {
       // Memastikan formData yang dikirimkan tidak kosong
-      if (!formData.username || !formData.password) {
-        console.error("Username dan password harus diisi.");
+      if (!formData.identifier || !formData.password) {
+        setError("Username or email and password must be filled.");
         return;
       }
 
+      // Check if the maximum number of login attempts has been reached
+      if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
+        setError("Maximum login attempts reached. Please try again later.");
+        return;
+      }
+
+      // Set loading to true before making the API call
+      setLoading(true);
+
       // Melanjutkan dengan proses login
-      const token = await login(formData.username, formData.password);
+      const token = await login(formData.identifier, formData.password);
+
+      // Reset loading to false after successful login
+      setLoading(false);
 
       // Redirect setelah login berhasil
       navigate("/");
     } catch (error) {
       console.error("Login error", error);
+      setError("Invalid username or password. Please try again."); // Set error message
+      // Reset loading to false after an error occurs
+      setLoading(false);
+      // Increment the login attempts counter
+      setLoginAttempts((prevAttempts) => prevAttempts + 1);
     }
   };
+
+  const remainingAttempts = MAX_LOGIN_ATTEMPTS - loginAttempts;
 
   return (
     <>
@@ -45,21 +70,31 @@ export default function LoginPage() {
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
               Sign in to our platform
             </h3>
+            {error && (
+              <div className="text-red-500 text-sm font-medium mb-4">
+                {error}
+              </div>
+            )}
+            {loginAttempts >= 3 && (
+              <p className="text-gray-500 mb-4 text-sm">
+                Remaining login attempts: {remainingAttempts}
+              </p>
+            )}
             <div>
               <label
-                htmlFor="username"
+                htmlFor="identifier"
                 className="text-sm font-medium text-gray-900 block mb-2 dark:text-gray-300"
               >
-                Your username
+                Your username or email
               </label>
               <input
                 type="text"
-                name="username"
-                id="username"
+                name="identifier"
+                id="identifier"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-500 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="username"
+                placeholder="username or email"
                 required
-                value={formData.username}
+                value={formData.identifier}
                 onChange={handleInputChange}
               />
             </div>
@@ -85,7 +120,7 @@ export default function LoginPage() {
               type="submit"
               className="w-full text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
             >
-              Login to your account
+              {loading ? "Logging in..." : "Login to your account"}
             </button>
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Not registered?{" "}

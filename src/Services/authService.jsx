@@ -2,11 +2,11 @@ import axios from "axios";
 
 const API_URL = "https://flixflix-api.onrender.com/api/v1/user";
 
-const login = async (username, password) => {
+const login = async (identifier, password) => {
   try {
     const response = await axios.post(
       `${API_URL}/login`,
-      { username, password },
+      { identifier, password },
       {
         headers: {
           "Content-Type": "application/json",
