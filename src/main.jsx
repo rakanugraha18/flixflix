@@ -13,6 +13,9 @@ import MovieUpcoming from "./pages/MovieUpcoming";
 import SeriesPage from "./pages/SeriesPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import Merchandise from "./pages/Merchandise.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
+import Profile from "./pages/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +25,14 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/detail/:id", element: <DetailMoviePage /> },
       { path: "/detailSeries/:id", element: <DetailSeriesPage /> },
+      { path: "/detailProduct/:id", element: <ProductDetails /> },
       { path: "/TopRate", element: <MovieTopRatePage /> },
       { path: "/Series", element: <SeriesPage /> },
       { path: "/Upcoming", element: <MovieUpcoming /> },
       { path: "/Login", element: <LoginPage /> },
       { path: "/Register", element: <RegisterPage /> },
+      { path: "/Merchandise", element: <Merchandise /> },
+      { path: "/Profile", element: <Profile /> },
     ],
   },
 ]);

@@ -41,6 +41,11 @@ const Navbar = () => {
       icon: HiTv,
       path: "/Series",
     },
+    {
+      name: "Merchandise",
+      icon: FaIcons.FaShoppingCart,
+      path: "/Merchandise",
+    },
   ];
 
   const account = [
