@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
@@ -18,10 +19,15 @@ export default function RegisterPage() {
 
     // Lakukan permintaan ke server untuk menyimpan data
     try {
+      // Set loading to true before making the API call
+      setLoading(true);
+
       const response = await axios.post(
         "https://flixflix-api.onrender.com/api/v1/user/register",
         jsonData
       );
+      // Reset loading to false after successful register
+      setLoading(false);
 
       // Tangani respons dari server
       if (response.status === 201) {
@@ -35,8 +41,33 @@ export default function RegisterPage() {
     } catch (error) {
       // Tangani kesalahan jaringan atau masalah lainnya
       console.error("Error selama pengiriman data:", error);
+
+      // Reset loading to false after an error occurs
+      setLoading(false);
+
+      // Handle API errors and display them on the form
+      if (error.response) {
+        // Server mengembalikan respons selain 2xx
+        console.error("Server error response:", error.response.data);
+
+        // Assuming the API returns error messages in a 'message' field
+        const errorMessage = error.response.data.message;
+
+        // Update your component state or use a library like react-toastify to display the error
+        // For simplicity, let's update the state with the error message
+        setErrorMessage(errorMessage);
+      } else if (error.request) {
+        // Request dibuat tetapi tidak ada respons dari server
+        console.error("No response from server");
+      } else {
+        // Kesalahan lainnya
+        console.error("Error:", error.message);
+      }
     }
   };
+
+  const [loading, setLoading] = useState(false); // State for loading
+  const [errorMessage, setErrorMessage] = useState(""); // State for error message
 
   return (
     <>
@@ -46,6 +77,12 @@ export default function RegisterPage() {
             <h3 className="text-xl font-medium text-gray-900 dark:text-white">
               Sign Up to our platform
             </h3>
+            {/* Add this below the button in your return statement to display the error message */}
+            {errorMessage && (
+              <div className="text-sm text-red-500 mt-2 dark:text-red-400">
+                {errorMessage}
+              </div>
+            )}
             <div>
               <label
                 htmlFor="username"
@@ -114,8 +151,9 @@ export default function RegisterPage() {
               type="submit"
               className="w-full text-white bg-orange-500 hover:bg-orange-700 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-500 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
             >
-              Sign up account
+              {loading ? "Logging in..." : "Sign up account"}
             </button>
+
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
               Have registered?{" "}
               <Link

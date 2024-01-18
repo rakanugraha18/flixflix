@@ -76,7 +76,7 @@ export default function LoginPage() {
               </div>
             )}
             {loginAttempts >= 3 && (
-              <p className="text-gray-500 mb-4 text-sm">
+              <p className="text-gray-500 mb-4 text-xs">
                 Remaining login attempts: {remainingAttempts}
               </p>
             )}
