@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ProductCard from "../components/productCard";
+import ProductCard from "../components/ProductCard";
 import { useNavigate } from "react-router-dom";
 
 function Merchandise() {
