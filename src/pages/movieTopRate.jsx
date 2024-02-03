@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { useNavigate } from "react-router-dom";
-import { getTopRate } from "../Services/globalAPI";
+import { getTopRate } from "../Services/GlobalAPI";
 
 export default function MovieTopRatePage() {
   // const [dataMovieTopRate, setDataMovieTopRate] = useState([]);

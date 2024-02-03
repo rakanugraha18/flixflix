@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getTrendingVideo } from "../Services/globalAPI";
+import { getTrendingVideo } from "../Services/GlobalAPI";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
 
