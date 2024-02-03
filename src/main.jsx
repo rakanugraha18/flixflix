@@ -13,7 +13,7 @@ import DetailSeriesPage from "./pages/detailSeries.jsx";
 import MovieTopRatePage from "./pages/movieTopRate.jsx";
 import MovieUpcoming from "./pages/MovieUpcoming";
 import SeriesPage from "./pages/SeriesPage";
-import LoginPage from "./pages/login.jsx";
+import LoginPage from "./pages/Login.jsx";
 import RegisterPage from "./pages/register.jsx";
 import Merchandise from "./pages/Merchandise.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
