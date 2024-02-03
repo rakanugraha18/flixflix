@@ -10,15 +10,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Cek apakah token tersedia
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // Jika tidak ada token, arahkan ke halaman login
-      navigate("/Login");
-    } else {
-      // Jika ada token, ambil data movie
-      getApiMovie();
-    }
+    getApiMovie();
   }, []);
 
   const getApiMovie = async () => {

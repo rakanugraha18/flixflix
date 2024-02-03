@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import GlobalAPI from "../Services/GlobalAPI";
+import { getTrendingVideo } from "../Services/globalAPI";
 import { Carousel } from "flowbite-react";
 import { Link } from "react-router-dom";
 
@@ -12,16 +12,15 @@ function Slider() {
 
   const slider = movieList.slice(currentPage, postsPerPage);
   const imgUrl = import.meta.env.VITE_APP_IMGURL;
+
+  const getTrendingMovies = async () => {
+    const responTrendingVideo = await getTrendingVideo(movieList);
+    setMovieList(responTrendingVideo.data.results);
+  };
+
   useEffect(() => {
     getTrendingMovies();
   }, []);
-
-  const getTrendingMovies = () => {
-    GlobalAPI.getTrendingVideo.then((resp) => {
-      console.log(resp.data.results);
-      setMovieList(resp.data.results);
-    });
-  };
 
   return (
     <>

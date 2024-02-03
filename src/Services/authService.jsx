@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "https://flixflix-api.onrender.com/api/v1/user";
+const API_URL = import.meta.env.VITE_FLIXFLIX_API;
 
 const login = async (identifier, password) => {
   try {
-    const response = await axios.post(
+    const resLogin = await axios.post(
       `${API_URL}/login`,
       { identifier, password },
       {
@@ -14,7 +14,7 @@ const login = async (identifier, password) => {
       }
     );
 
-    const token = response.data.token;
+    const token = resLogin.data.token;
     localStorage.setItem("token", token);
 
     return token;
@@ -24,8 +24,26 @@ const login = async (identifier, password) => {
   }
 };
 
+const register = async (username, email, fullname, password) => {
+  try {
+    const resRegister = await axios.post(
+      `${API_URL}/register`,
+      { username, email, password, fullname },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return resRegister;
+  } catch (error) {
+    console.error("Registration failed", error);
+    throw error;
+  }
+};
+
 const logout = () => {
   localStorage.removeItem("token");
 };
 
-export { login, logout };
+export { login, register, logout };

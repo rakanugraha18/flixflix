@@ -2,15 +2,19 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-export default function DetailMoviePage() {
-  const imgUrl = "https://image.tmdb.org/t/p/w500";
+const DetailCard = ({
+  category,
+  baseUrl = import.meta.env.VITE_APP_BASEURL,
+  apiKey = import.meta.env.VITE_APP_API_KEY,
+}) => {
+  const imgUrl = import.meta.env.VITE_TMDB_IMG;
   const [dataDetail, setDataDetail] = useState({});
 
   const params = useParams();
 
-  const getDetailApiMovie = async () => {
+  const getDetail = async () => {
     const response = await axios(
-      `https://api.themoviedb.org/3/movie/${params.id}?api_key=47aab7668ec7bf6aecaf74e0672195c5`
+      `${baseUrl}/${category}/${params.id}?api_key=${apiKey}`
     );
     setDataDetail(response.data);
   };
@@ -24,7 +28,7 @@ export default function DetailMoviePage() {
       navigate("/Login");
     } else {
       // Jika ada token, ambil data movie
-      getDetailApiMovie();
+      getDetail();
     }
   }, []);
   return (
@@ -44,4 +48,6 @@ export default function DetailMoviePage() {
       </section>
     </>
   );
-}
+};
+
+export default DetailCard;

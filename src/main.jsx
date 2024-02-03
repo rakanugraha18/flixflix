@@ -1,18 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "../redux/store.js";
 
 import App from "./App.jsx";
 import "./index.css";
 //import pages
 import HomePage from "./pages/HomePage";
-import DetailMoviePage from "./pages/DetailMoviePage";
-import DetailSeriesPage from "./pages/DetailSeriesPage";
-import MovieTopRatePage from "./pages/MovieTopRatePage";
+import DetailMoviePage from "./pages/detailMovie.jsx";
+import DetailSeriesPage from "./pages/detailSeries.jsx";
+import MovieTopRatePage from "./pages/movieTopRate.jsx";
 import MovieUpcoming from "./pages/MovieUpcoming";
 import SeriesPage from "./pages/SeriesPage";
-import LoginPage from "./pages/Login";
-import RegisterPage from "./pages/Register";
+import LoginPage from "./pages/login.jsx";
+import RegisterPage from "./pages/register.jsx";
 import Merchandise from "./pages/Merchandise.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -38,5 +40,9 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </React.StrictMode>
 );
